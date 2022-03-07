@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, Image, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Movies from "../screens/Movie";
-import TV from "../screens/TV";
+import Home from "../screens/Home";
+import MyPage from "../screens/MyPage";
 import Search from "../screens/Search";
 import { Ionicons } from "@expo/vector-icons";
 import { useColorScheme } from "react-native";
@@ -12,6 +12,7 @@ import {
   MIDGREY_COLOR,
   YELLOW_COLOR,
 } from "../color";
+import Alert from "../screens/Alert";
 
 const Tab = createBottomTabNavigator();
 
@@ -37,21 +38,21 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="Movies"
-        component={Movies}
+        name="Home"
+        component={Home}
         options={{
           tabBarIcon: ({ focused, color, size }) => {
-            return <Ionicons name="film-outline" size={size} color={color} />;
+            return <Ionicons name="home-outline" size={size} color={color} />;
           },
         }}
       />
       <Tab.Screen
-        name="TV"
-        component={TV}
+        name="Alert"
+        component={Alert}
         options={{
           tabBarBadge: "5s",
           tabBarIcon: ({ focused, color, size }) => {
-            return <Ionicons name="tv-outline" size={size} color={color} />;
+            return <Ionicons name="bulb-outline" size={size} color={color} />;
           },
         }}
       />
@@ -63,6 +64,15 @@ const Tabs = () => {
             return (
               <Ionicons name={"search-outline"} size={size} color={color} />
             );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="MyPage"
+        component={MyPage}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name="person-outline" size={size} color={color} />;
           },
         }}
       />

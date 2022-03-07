@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "rn_master_movie",
-    "slug": "rn_master_movie",
+    "name": "ooh-ahag-e-UI",
+    "slug": "ooh-ahag-e-ui",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "assetBundlePatterns": ["**/*"],
+    "description": "",
+    "githubUrl": "https://github.com/Injun-Lim/ooh-ahag-e-UI"
   },
-  "name": "rn_master_movie"
+  "name": "ooh-ahag-e-UI"
 }

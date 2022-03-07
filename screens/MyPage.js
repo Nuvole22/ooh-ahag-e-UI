@@ -1,13 +1,13 @@
 import React from "react";
 import { TouchableOpacity, View, Text } from "react-native";
 
-const Search = ({ navigation: { navigate } }) => (
+const MyPage = ({ navigation: { navigate } }) => (
   <TouchableOpacity
-    onPress={() => navigate("Stack", { screen: "Three" })}
+    onPress={() => navigate("Stack", { screen: "Two" })}
     style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
   >
-    <Text>Search</Text>
+    <Text>MyPage</Text>
   </TouchableOpacity>
 );
 
-export default Search;
+export default MyPage;
