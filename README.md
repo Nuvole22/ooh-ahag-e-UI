@@ -35,6 +35,18 @@ npm install @react-navigation/native
 npm install @react-navigation/bottom-tabs
 npm install @react-navigation/native-stack
 
+
+-> gradlew.bat exited with non-zero code: 1 에러 발생시
+외부 cmd창에서 yarn 설치, expo upgrade 실행하여 해결함 (yarn 설치가 안돼있고, expo sdk가 1이었음, 최신은 44)
+
+npm install --global yarn
+expo upgrade
+
+
+-> yarn : 이 시스템에서 스크립트를 실행할 수 없으므로 ~~ 에러 발생시
+powershell 관리자로 열기
+Set-ExecutionPolicy RemoteSigned 입력해서 권한 주기
+get-ExecutionPolicy 입력하여 확인 
 ---
 
 git 관리 기초
