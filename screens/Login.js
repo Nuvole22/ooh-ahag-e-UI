@@ -25,16 +25,16 @@ const Login = ({ navigation: { navigate } }) => {
     setNumber(event);
   };
 
-  const getLogin = async (name, params) => {
+  const getLoginAPI = async (name, params) => {
     try {
       setLoading(true);
 
       const resApi = await LoginApiSelector(name, params);
 
-      setLoading(false);
-
       let res = JSON.stringify(resApi);
       console.log('[LOG] resApi : ' + res);
+
+      setLoading(false);
     }
     catch (error) {
       Alert.alert("로그인 정보를 가져올 수 없습니다.");
@@ -81,8 +81,7 @@ const Login = ({ navigation: { navigate } }) => {
             // let res = LoginAPI('?page=1&perPage=10&serviceKey=data-portal-test-key');
             if(isLoading === false)
             {
-              getLogin('GetLoginInfo', '?page=1&perPage=10&serviceKey=data-portal-test-key'); // GET
-              getLogin('GetId', {'page':'1', 'perPage' : '10', 'serviceKey' : 'data-portal-test-key'}); //POST
+              getLoginAPI('GetLoginInfo', {'userId':'test', 'pw':'1234'}); // GET
             }
             else
             {

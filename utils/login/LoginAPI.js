@@ -3,7 +3,7 @@ import axiosUtil from '../AxiosUtil';
 const GetLoginInfo = (params) => {
     try 
         {
-            const res = axiosUtil.get('/RentPriceTrendSvc/v1/getJeonseRentChangeRate?page=1&perPage=10&serviceKey=data-portal-test-key');
+            const res = axiosUtil.get(`json/login`, { params: params });
             return res;
         }
         catch (error) 
@@ -27,7 +27,7 @@ const GetId = (params) => {
 };
 const LoginApiSelector = (api, params) =>
 {
-    console.log('[LOG] API Name : ' + api + 'Params : ' + params);
+    console.log('[LOG] API Name : ' + api + ', Params : ' + params);
     let res;
 
     switch(api)

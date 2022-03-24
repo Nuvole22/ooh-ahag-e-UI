@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // axios 인스턴스 생성
 const AxiosUtil = axios.create({
-    baseURL: 'https://api.odcloud.kr/api/', // 나중에 서버 URL 로 변경 필요
+    baseURL: `http://13.125.219.60:8080/test/`, // 나중에 서버 URL 로 변경 필요
     timeout: 1000,
     // headers: {
     //     // 커스텀헤더를 넣으면 오류남. 커스텀헤더에는 ' 가 생김.
@@ -23,6 +23,7 @@ AxiosUtil.interceptors.request.use(
     },
     function (error) {
         console.log("request error");
+        console.log(error);
         // 요청 에러 직전 호출
         return Promise.reject(error);
     },
@@ -39,6 +40,7 @@ AxiosUtil.interceptors.response.use(
 
     function (error) {
         console.log("response error");
+        console.log(error);
         // https stauts !== 200 일 때 - axios 함수에서 .catch()으로 연결됨
         return Promise.reject(error);
     },
