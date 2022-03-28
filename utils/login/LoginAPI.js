@@ -3,7 +3,7 @@ import axiosUtil from '../AxiosUtil';
 const GetLoginInfo = (params) => {
     try 
         {
-            const res = axiosUtil.get(`json/login`, { params: params });
+            const res = axiosUtil.post(`json/login`, { 'userId': params.userId, 'pw': params.pw });
             return res;
         }
         catch (error) 
@@ -16,7 +16,7 @@ const GetLoginInfo = (params) => {
 const GetId = (params) => {
     try 
         {
-            const res = axiosUtil.post('/RentPriceTrendSvc/v1/getJeonseRentChangeRate/', { params: params });
+            const res = axiosUtil.post('/RentPriceTrendSvc/v1/getJeonseRentChangeRate/', { 'userId': params.userId, 'pw': params.pw });
             return res;
         }
         catch (error) 

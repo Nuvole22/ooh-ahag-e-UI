@@ -81,7 +81,7 @@ const Login = ({ navigation: { navigate } }) => {
             // let res = LoginAPI('?page=1&perPage=10&serviceKey=data-portal-test-key');
             if(isLoading === false)
             {
-              getLoginAPI('GetLoginInfo', {'userId':'test', 'pw':'1234'}); // GET
+              getLoginAPI('GetLoginInfo', {userId:'test', pw:'1234'});
             }
             else
             {
