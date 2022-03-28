@@ -24,7 +24,6 @@ const Login = ({ navigation: { navigate } }) => {
   const onChangeNumber = (event) => {
     setNumber(event);
   };
-
   const getLoginAPI = async (name, params) => {
     try {
       setLoading(true);
@@ -32,7 +31,15 @@ const Login = ({ navigation: { navigate } }) => {
       const resApi = await LoginApiSelector(name, params);
 
       let res = JSON.stringify(resApi);
+
       console.log('[LOG] resApi : ' + res);
+    
+      if (resApi.data.success === true) {
+        Alert.alert("success login", "Login 성공! ID : " + resApi.data.content.userId + "PW : " + resApi.data.content.pw);
+        navigate("Tabs", { screen: "Home" });
+      } else {
+        Alert.alert("wrong id pw", "ID : " + resApi.data.content.userId + "PW : " + resApi.data.content.pw);
+      }
 
       setLoading(false);
     }
@@ -72,16 +79,9 @@ const Login = ({ navigation: { navigate } }) => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            // if (text === "asd" && number === "123") {
-            //   navigate("Tabs", { screen: "Home" });
-            // } else {
-            //   Alert.alert("wrong id pw", "(test id:asd / pw:123)");
-            // }
-
-            // let res = LoginAPI('?page=1&perPage=10&serviceKey=data-portal-test-key');
             if(isLoading === false)
             {
-              getLoginAPI('GetLoginInfo', {userId:'test', pw:'1234'});
+              getLoginAPI('GetLoginInfo', {userId:text, pw:number});
             }
             else
             {

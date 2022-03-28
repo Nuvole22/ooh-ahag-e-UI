@@ -33,7 +33,6 @@ AxiosUtil.interceptors.request.use(
 AxiosUtil.interceptors.response.use(
     function (response) {
         console.log("response");
-        console.log(response);
         // https stauts === 200 일 때 - axios 함수에서 .then()으로 연결됨
         return response;
     },
