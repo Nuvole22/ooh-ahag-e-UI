@@ -9,74 +9,177 @@ import {
   Image,
   Alert,
 } from "react-native";
+import styled from "styled-components/native";
+import { DARKGREY_COLOR } from "../color";
 import { Ionicons } from "@expo/vector-icons";
 
-const Login = ({ navigation: { navigate } }) => {
-  const [text, setText] = useState("asd");
-  const [number, setNumber] = useState("123");
+const WholeContainer = styled.View`
+  flex: 1;
+  background-color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: center;
+`;
 
-  const [resText, setResText] = useState("");
+const TxtInput = styled.TextInput`
+  border-width: 1px;
+  border-color: gray;
+  width: 100%;
+  height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 20px;
+`;
 
-  const apiTest = () => {
-    fetch("http://13.125.219.60:8080/api/test")
-      .then((res) => res.json)
-      .then((data) => console.log(data));
+const FormArea = styled.View`
+  width: 100%;
+  flex: 0.5;
+`;
 
-    fetch("https://jsonplaceholder.typicode.com/posts/1").then((res) =>
-      console.log(res)
-    );
+const SocialText = styled.Text`
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 15px;
+`;
+
+const Hr = styled.View`
+  border-bottom-color: black;
+  border-bottom-width: 1px;
+  margin-bottom: 15px;
+`;
+
+const SignUpBtnArea = styled.View`
+  width: 100%;
+  flex: 0.1;
+`;
+
+const SignUpBtn = styled.TouchableOpacity`
+  background-color: #46c3ad;
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SignUp = ({ navigation: { navigate } }) => {
+  const [eMailText, setEMailText] = useState("");
+  const [passText, setPassText] = useState("");
+  const [passValidText, setPassValidText] = useState("");
+  const [nicknameText, setnicknameText] = useState("");
+
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [nicknameValid, setNicknameValid] = useState(false);
+
+  const onChangeEmail = (event) => {
+    setEmailValid(false);
+    setEMailText(event);
+  };
+  const onChangePassword = (event) => {
+    setPasswordValid(false);
+    setPassText(event);
+  };
+  const onChangePasswordValid = (event) => {
+    setPasswordValid(false);
+    setPassValidText(event);
+  };
+  const onChangeNickname = (event) => {
+    setNicknameValid(false);
+    setnicknameText(event);
   };
 
-  useEffect(() => {
-    apiTest();
-  }, []);
+  //TODO : API로 통신하여 중복 체크 해야 함, 현재는 스트링 값에 "@" 있는지만 체크함
+  const checkEmailValid = () => {
+    if (eMailText.toString().includes("@")) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
+  };
 
-  const onChangeText = (event) => {
-    setText(event);
+  //TODO : 특수문자, 자릿수 체크해야함, 현재는 패스워드, 확인칸 값이 맞는지만 체크함
+  const checkPasswordValid = () => {
+    if (passText === passValidText && passText) {
+      setPasswordValid(true);
+    } else {
+      setPasswordValid(false);
+    }
   };
-  const onChangeNumber = (event) => {
-    setNumber(event);
+
+  //TODO : API로 통신하여 중복 체크 해야 함, 현재는 값 있는지만 체크함
+  const checkNicknameValid = () => {
+    if (nicknameText) {
+      setNicknameValid(true);
+    } else {
+      setNicknameValid(false);
+    }
   };
+
+  const onPressSignUp = () => {
+    if (emailValid && passwordValid && nicknameValid) {
+      alert("valid OK 회원가입 성공");
+    } else if (!emailValid) {
+      alert("이메일을 확인하세요");
+    } else if (!passwordValid) {
+      alert("패스워드를 확인하세요");
+    } else if (!nicknameValid) {
+      alert("닉네임을 확인하세요");
+    }
+  };
+
+  useEffect(() => {}, []);
+
   return (
-    <View style={styles.container}>
-      <Image source={require("../icon.png")} style={styles.logo} />
-      <Text>{}</Text>
-      <View style={styles.titleArea}>
-        <Text style={styles.title}>우아학ㅔ</Text>
-      </View>
-      <View style={styles.formArea}>
-        <TextInput
-          style={styles.textForm}
-          placeholder={"ID(asd)"}
-          onChangeText={onChangeText}
-          value={text}
+    <WholeContainer>
+      <SocialText>이메일로 회원가입</SocialText>
+      <Hr />
+      <FormArea>
+        <TxtInput
+          placeholder={"이메일 (현재 '@' 포함되면 valid 통과)"}
+          onChangeText={onChangeEmail}
+          value={eMailText}
+          keyboardType={"email-address"}
+          style={{ borderColor: emailValid ? "green" : "red" }}
+          onEndEditing={checkEmailValid}
+          autoCapitalize={"none"}
         />
-        <TextInput
-          style={styles.textForm}
-          placeholder={"Password(123)"}
-          onChangeText={onChangeNumber}
-          value={number}
+        <TxtInput
+          placeholder={"비밀번호"}
+          onChangeText={onChangePassword}
+          value={passText}
+          secureTextEntry
+          style={{ borderColor: passwordValid ? "green" : "red" }}
+          onEndEditing={checkPasswordValid}
+          autoCapitalize={"none"}
         />
-      </View>
-      <View style={styles.buttonArea}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            if (text === "asd" && number === "123") {
-              navigate("Tabs", { screen: "Home" });
-            } else {
-              Alert.alert("wrong id pw", "(test id:asd / pw:123)");
-            }
-          }}
-        >
-          <Text style={styles.buttonTitle}>Login</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        <TxtInput
+          placeholder={"비밀번호 확인"}
+          onChangeText={onChangePasswordValid}
+          value={passValidText}
+          secureTextEntry
+          style={{ borderColor: passwordValid ? "green" : "red" }}
+          onEndEditing={checkPasswordValid}
+          autoCapitalize={"none"}
+        />
+        <TxtInput
+          placeholder={"닉네임"}
+          onChangeText={onChangeNickname}
+          value={nicknameText}
+          onEndEditing={checkNicknameValid}
+          style={{ borderColor: nicknameValid ? "green" : "red" }}
+          autoCapitalize={"none"}
+        />
+      </FormArea>
+      <SignUpBtnArea>
+        <SignUpBtn onPress={onPressSignUp}>
+          <Text style={styles.buttonTitle}>회원가입 하기</Text>
+        </SignUpBtn>
+      </SignUpBtnArea>
+    </WholeContainer>
   );
 };
 
-export default Login;
+export default SignUp;
 
 const styles = StyleSheet.create({
   logo: {
