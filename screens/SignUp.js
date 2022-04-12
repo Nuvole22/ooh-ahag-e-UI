@@ -117,6 +117,7 @@ const SignUp = ({ navigation: { navigate } }) => {
 
   const onPressSignUp = () => {
     if (emailValid && passwordValid && nicknameValid) {
+      //TODO : 회원가입 API 전송, 로그인 화면으로 화면 전환
       alert("valid OK 회원가입 성공");
     } else if (!emailValid) {
       alert("이메일을 확인하세요");
