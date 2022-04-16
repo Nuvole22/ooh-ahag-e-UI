@@ -10,12 +10,16 @@ import {
   DefaultTheme,
 } from "@react-navigation/native";
 import RootNav from "./navigation/Root";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { darkTheme, lightTheme } from "./styled";
+import { ThemeProvider } from "styled-components";
 
 export default function App() {
   // const [ready, setReady] = useState(false);
   const [assets] = useAssets([require("./icon.png")]);
   const [fontLoaded] = Font.useFonts(Ionicons.font);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const queryClient = new QueryClient();
 
   const isDark = useColorScheme() === "dark";
 
@@ -23,8 +27,18 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <NavigationContainer>
-      <RootNav />
-    </NavigationContainer>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider
+        theme={
+          isDark
+            ? darkTheme
+            : darkTheme /* 테스트용으로 전부 darkTheme, 후에 lightTheme으로 수정 필요 */
+        }
+      >
+        <NavigationContainer>
+          <RootNav />
+        </NavigationContainer>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

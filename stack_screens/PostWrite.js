@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Picker, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import styled from "styled-components/native";
 import { DARKGREY_COLOR } from "../color";
 import { Ionicons } from "@expo/vector-icons";
