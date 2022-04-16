@@ -2,27 +2,27 @@ import axiosUtil from '../AxiosUtil';
 
 const GetLoginInfo = (params) => {
     try 
-        {
-            const res = axiosUtil.post(`json/login`, { 'userId': params.userId, 'pw': params.pw });
-            return res;
-        }
-        catch (error) 
-        {
-            return error;
-        } 
+    {
+        const res = axiosUtil.post(`json/login`, { 'userId': params.userId, 'pw': params.pw });
+        return res;
+    }
+    catch (error) 
+    {
+        return error;
+    } 
     
 };
 
 const GetId = (params) => {
     try 
-        {
-            const res = axiosUtil.post('/RentPriceTrendSvc/v1/getJeonseRentChangeRate/', { 'userId': params.userId, 'pw': params.pw });
-            return res;
-        }
-        catch (error) 
-        {
-            return error;
-        } 
+    {
+        const res = axiosUtil.post('/RentPriceTrendSvc/v1/getJeonseRentChangeRate/', { 'userId': params.userId, 'pw': params.pw });
+        return res;
+    }
+    catch (error) 
+    {
+        return error;
+    } 
     
 };
 const LoginApiSelector = (api, params) =>
@@ -39,4 +39,15 @@ const LoginApiSelector = (api, params) =>
     return res;
 };
 
-export { LoginApiSelector };
+export const LoginApi = (params) =>{
+    console.log('[LOG] API Name : ' + api + ', Params : ' + params);
+
+    GetLoginInfo:()=> {
+        axiosUtil.post(`json/login`, { 'userId': params.userId, 'pw': params.pw })
+        .then(res => {
+            console.log(res)
+        }).catch(error =>{
+            console.log(error)
+        })
+    }
+};

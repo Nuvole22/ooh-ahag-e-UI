@@ -3,9 +3,13 @@
     "name": "ooh-ahag-e-UI",
     "slug": "ooh-ahag-e-ui",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "description": "",
-    "githubUrl": "https://github.com/Injun-Lim/ooh-ahag-e-UI"
+    "githubUrl": "https://github.com/Injun-Lim/ooh-ahag-e-UI",
+    "sdkVersion": "44.0.0",
+    "entryPoint": ".vscode\\exponentIndex.js"
   },
   "name": "ooh-ahag-e-UI"
 }

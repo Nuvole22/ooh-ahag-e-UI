@@ -3,13 +3,7 @@ import axios from 'axios';
 // axios 인스턴스 생성
 const AxiosUtil = axios.create({
     baseURL: `http://13.125.219.60:8080/test/`, // 나중에 서버 URL 로 변경 필요
-    timeout: 1000,
-    // headers: {
-    //     // 커스텀헤더를 넣으면 오류남. 커스텀헤더에는 ' 가 생김.
-    //     Accept: 'application/json',
-    //     useQueryString: 'true',
-    //     Authorization: 'data-portal-test-key',
-    // },
+    timeout: 1000
 });
 
 // 요청 인티셉터 (요청 전에 가로채서 axios 설정을 적용함)

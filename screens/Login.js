@@ -10,7 +10,7 @@ import {
   Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { LoginApiSelector } from "../utils/login/LoginAPI";
+import { LoginApi } from "../utils/login/LoginAPI";
 
 const Login = ({ navigation: { navigate } }) => {
   const [text, setText] = useState("asd");
@@ -24,11 +24,11 @@ const Login = ({ navigation: { navigate } }) => {
   const onChangeNumber = (event) => {
     setNumber(event);
   };
-  const getLoginAPI = async (name, params) => {
+  const getLoginAPI = async (params) => {
     try {
       setLoading(true);
 
-      const resApi = await LoginApiSelector(name, params);
+      const resApi = await LoginApi.GetLoginInfo(params);
 
       let res = JSON.stringify(resApi);
 
@@ -57,6 +57,7 @@ const Login = ({ navigation: { navigate } }) => {
     } catch (error) {
       Alert.alert("로그인 정보를 가져올 수 없습니다.");
 
+      console.log("[LOG] error : " + error);
       setLoading(false);
     }
   };
@@ -101,7 +102,7 @@ const Login = ({ navigation: { navigate } }) => {
           style={styles.button}
           onPress={() => {
             if (isLoading === false) {
-              getLoginAPI("GetLoginInfo", { userId: text, pw: number });
+              getLoginAPI({ userId: text, pw: number });
             } else {
               console.log("[LOG] 로딩중입니다.");
             }
