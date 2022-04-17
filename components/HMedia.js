@@ -64,9 +64,9 @@ const HMedia = ({
   likeCnt,
   commentCnt,
 }) => {
-  const [postLike, setPostLike] = useState(false);
-  const [postLikeCnt, setPostLikeCnt] = useState(0);
-  const [postCommentCnt, setPostCommentCnt] = useState(0);
+  const [postLike, setPostLike] = useState(like);
+  const [postLikeCnt, setPostLikeCnt] = useState(likeCnt);
+  const [postCommentCnt, setPostCommentCnt] = useState(commentCnt);
 
   const navigation = useNavigation();
   const goToDetail = () => {
