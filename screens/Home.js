@@ -57,6 +57,9 @@ const Home = ({ navigation: { navigate, setOptions } }) => {
       release_date={item.release_date}
       overview={item.overview}
       fullData={item}
+      like={false}
+      likeCnt={0}
+      commentCnt={0}
     />
   );
 
